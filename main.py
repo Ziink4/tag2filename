@@ -1,10 +1,10 @@
 import os
 import re
-from pathlib import Path
 from typing import Tuple, Optional
-from logzero import logger
-import unidecode
+
 import mutagen
+import unidecode
+from logzero import logger
 
 
 def read_tags_from_file(file: str) -> Optional[Tuple[str, str, int, str]]:
