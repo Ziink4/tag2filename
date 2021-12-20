@@ -2,6 +2,7 @@ import os
 import re
 from typing import Tuple, Optional
 
+import logzero
 import mutagen
 import unidecode
 from logzero import logger
@@ -148,8 +149,26 @@ def rename_recursive(path: str):
 
 
 if __name__ == '__main__':
+    DO_PROFILING = False
+
     # Setup Logging
     # logzero.logfile("logs/logfile.log", maxBytes=1e9, backupCount=1)
     logzero.loglevel(level=20)  # logging.INFO
     # logzero.loglevel(level=10)  # logging.DEBUG
+
+    if DO_PROFILING:
+        import cProfile
+        import pstats
+
+        # Start Profiler
+        pr = cProfile.Profile()
+        pr.enable()
+
+    # Rename all files
     rename_recursive("D:\\Music\\")
+
+    if DO_PROFILING:
+        # Stop profiler and print stats
+        pr.disable()
+        ps = pstats.Stats(pr)
+        ps.sort_stats('cumulative').print_stats()
