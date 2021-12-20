@@ -148,4 +148,8 @@ def rename_recursive(path: str):
 
 
 if __name__ == '__main__':
+    # Setup Logging
+    # logzero.logfile("logs/logfile.log", maxBytes=1e9, backupCount=1)
+    logzero.loglevel(level=20)  # logging.INFO
+    # logzero.loglevel(level=10)  # logging.DEBUG
     rename_recursive("D:\\Music\\")
