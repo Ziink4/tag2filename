@@ -136,6 +136,10 @@ def rename_recursive(path: str):
             new_lyrics_file = os.path.normpath(path + basename_from_tags + '.lrc')
             logger.debug(f"New path for file is {new_sound_file}")
 
+            if sound_file == new_sound_file:
+                logger.debug(f"Nothing to do for {new_sound_file}")
+                continue
+
             logger.info(f"Renaming {sound_file} to {new_sound_file}")
             os.renames(sound_file, new_sound_file)
             if os.path.isfile(lyrics_file):
