@@ -34,7 +34,7 @@ def read_tags_from_file(file: str) -> Optional[Tuple[str, str, int, str]]:
                     album = ''
 
                 try:
-                    track = int(re.match(R"(\d+)(?:\/\d+)?", tags.tags.getall('TRCK')[0].text[0])[1])
+                    track = int(re.match(r"(\d+)(?:/\d+)?", tags.tags.getall('TRCK')[0].text[0])[1])
                 except IndexError as e:
                     logger.exception(e)
                     track = 0
@@ -57,7 +57,7 @@ def read_tags_from_file(file: str) -> Optional[Tuple[str, str, int, str]]:
                     album = ''
 
                 try:
-                    track = int(re.match(R"(\d+)(?:/\d+)?", tags['tracknumber'][0])[1])
+                    track = int(re.match(r"(\d+)(?:/\d+)?", tags['tracknumber'][0])[1])
                 except (KeyError, IndexError) as e:
                     logger.exception(e)
                     track = 0
